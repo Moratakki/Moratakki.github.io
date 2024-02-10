@@ -170,6 +170,43 @@ a:hover {
   border-radius: 50%;
   width: 400px;
   height: 400px;
+  animation: 2s infinite alternate shadow-flow;
+}
+
+pre {
+  border-left: 2px dashed #ffcdcd;
+  padding-top: 15px;
+  padding-left: 10px;
+  font-size: 20px;
+}
+
+@keyframes shadow-flow {
+  from {
+    box-shadow: 0px 0px 35px rgb(239, 36, 36);
+  }
+
+  to {
+    box-shadow: 0px 0px 15px rgb(36, 94, 239);
+  }
+}
+
+.table {
+  margin: 10px auto;
+  display: table;
+}
+
+.table-row {
+  display: table-row;
+}
+
+.table-cell {
+  width: 500px;
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.table-cell h1 {
+  font-size: 2.5em;
 }
 
 footer {
