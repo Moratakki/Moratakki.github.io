@@ -50,13 +50,15 @@ a:hover {
   color: #fa9393;
 }
 
+.main {
+  min-height: calc(100vh - 143px);
+}
+
 footer {
-  width: 100%;
-  font-size: 12px;
-  position: absolute;
-  bottom: 0;
-  height: 30px;
+  vertical-align: bottom;
+  height: 20px;
   text-align: center;
+  font-size: 12px;
 }
 
 /* ========================INDEX.HTML======================== */
