@@ -6,7 +6,7 @@ include "portfolio_db.php";
 
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale = 1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale  =1.0" />
   <meta name="description" content="Nice dude's site" />
   <meta name="keywords" content="Charming, nice, Danil, Jaguar, Cook" />
   <meta name="google-site-verification" content="DM36NGZ0oJZu1xEuIDwGX359HmQdImHBl3_45Oo01Rw" />
@@ -32,7 +32,7 @@ include "portfolio_db.php";
   <main class="table main">
     <div class="table-row">
       <div class="table-cell">
-        <img id="me" src="images/me3.jpg" alt="" />
+        <img id="me" src="<?php echo $photoSrc; ?>" alt="Моя фотография">
       </div>
       <div class="table-cell">
         <h1>Быков Д.И.</h1>

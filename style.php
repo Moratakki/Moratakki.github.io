@@ -1,5 +1,8 @@
-<?php header("Content-type: text/css; charset: UTF-8");
-include "portfolio_db.php" ?>
+<?php
+header("Content-type: text/css; charset: UTF-8");
+include "portfolio_db.php";
+?>
+
 html,
 body {
 width: 100%;
@@ -11,6 +14,7 @@ z-index: 1;
 font-family: "Lucida Console", Monaco, monospace;
 color: #ffcdcd;
 }
+
 
 header {
 box-sizing: border-box;
@@ -159,74 +163,69 @@ font-weight: 700;
 }
 
 .python,
-.C++,
-.JS,
-.C# {
+.cpp,
+.js,
+.csharp {
 padding: 5px;
 border-radius: 10px;
-width:
-<?php ?>%;
+width: 90%;
 background-color: #0a9a05;
 }
 
-.C++ {
+.cpp {
 width:
-<?php ?>%;
+<?php echo $skills[1]["skill_level"] ?>%;
 background-color: #619f10;
 }
 
-.JS {
+.js {
 width:
-<?php ?>%;
+<?php echo $skills[2]["skill_level"] ?>%;
 background-color: #8e9f10;
 }
 
-.C# {
+.csharp {
 width:
-<?php ?>%;
+<?php echo $skills[3]["skill_level"] ?>%;
 background-color: #9f6110;
 }
 
 .python::after {
 text-align: right;
 display: none;
-content: "
-<?php ?>%";
+content: "<?php echo $skills[0]["skill_level"] ?>%";
 font-weight: normal;
 font-size: 12px;
 }
 
-.C++::after {
+.cpp::after {
 text-align: right;
 display: none;
-content: "
-<?php ?>%";
+content: "<?php echo $skills[1]["skill_level"] ?>%";
 font-weight: normal;
 font-size: 12px;
 }
 
-.JS::after {
+.js::after {
 text-align: right;
 display: none;
-content: "
-<?php ?>%";
+content: "<?php echo $skills[2]["skill_level"] ?>%";
 font-weight: normal;
 font-size: 12px;
 }
 
-.C#::after {
+.csharp::after {
 text-align: right;
 display: none;
-content: "
-<?php ?>%";
+content: "<?php echo $skills[3]["skill_level"] ?>%";
 font-weight: normal;
 font-size: 12px;
 }
 
-.skill:hover .s90::after,
-.skill:hover .s60::after,
-.skill:hover .s55::after,
-.skill:hover .s40::after {
+.skill:hover .python::after,
+.skill:hover .cpp::after,
+.skill:hover .js::after,
+.skill:hover .csharp::after {
 display: inline;
 }
 

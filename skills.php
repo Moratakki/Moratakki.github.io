@@ -34,13 +34,13 @@ include "portfolio_db.php";
         <div class="python">Python</div>
       </div>
       <div class="skill">
-        <div class="c++">C++</div>
+        <div class="cpp">C++</div>
       </div>
       <div class="skill">
-        <div class="JS">JS</div>
+        <div class="js">JS</div>
       </div>
       <div class="skill">
-        <div class="C#">C#</div>
+        <div class="csharp">C#</div>
       </div>
     </div>
   </main>
