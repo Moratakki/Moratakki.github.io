@@ -58,36 +58,4 @@ function getAboutMe()
     closeDB();
     return $about_me;
 }
-
-
-/*function getImages()
-{
-    global $link;
-    openDB();
-
-    $result = mysqli_query($link, "SELECT * FROM images");
-    if ($result->num_rows > 0) {
-        $finfo = finfo_open(FILEINFO_MIME_TYPE); // Инициализация функции для определения MIME-типа
-
-        while ($row = $result->fetch_assoc()) {
-            // Определяем MIME-тип изображения
-            $imageType = finfo_buffer($finfo, $row['image'], FILEINFO_MIME_TYPE);
-
-            // Преобразуем BLOB в Base64 и сохраняем в массив
-            $imageBase64 = base64_encode($row['image']);
-            $images[] = [
-                'id' => $row['id'],
-                'src' => 'data:' . $imageType . ';base64,' . $imageBase64, // Формируем строку для src
-                'type' => $imageType // Сохраняем тип изображения (опционально)
-            ];
-        }
-
-        finfo_close($finfo); // Закрываем ресурс
-    } else {
-        $images = []; // Если фотографий нет
-    }
-
-    closeDB();
-    return $images;
-}*/
 ?>
