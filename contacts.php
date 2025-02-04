@@ -1,7 +1,8 @@
-<!DOCTYPE html>
 <?php
 include "portfolio_db.php";
+$contacts = getContacts();
 ?>
+<!DOCTYPE html>
 <html lang="ru">
 
 <head>
@@ -31,18 +32,18 @@ include "portfolio_db.php";
     <h1 class="contacts">Мои контакты</h1>
     <ul class="socials">
       <li>
-        <a href="<?php $contacts["vk_link"] ?>"><i class="bx bx-fw bxl-vk"></i>VK</a>
+        <a href="<?php $contacts[0]["vk_link"] ?>"><i class="bx bx-fw bxl-vk"></i>VK</a>
       </li>
       <li>
-        <a href="<?php $contacts["tg_link"] ?>"><i class="bx bx-fw bxl-telegram"></i>Telegram</a>
+        <a href="<?php $contacts[0]["tg_link"] ?>"><i class="bx bx-fw bxl-telegram"></i>Telegram</a>
       </li>
       <li>
-        <a href="<?php $contacts["github_link"] ?>"><i class="bx bx-fw bx-md bxl-github"></i>GitHub</a>
+        <a href="<?php $contacts[0]["github_link"] ?>"><i class="bx bx-fw bx-md bxl-github"></i>GitHub</a>
       </li>
-      <li style="font-size: 20px">Тел.: <?php echo $contacts["phone"] ?></li>
+      <li style="font-size: 20px">Тел.: <?php echo $contacts[0]["phone"] ?></li>
     </ul>
   </div>
-  <footer>© <?php echo $year ?> Moratakki</footer>
+  <footer>© <?php echo date("Y") ?> Moratakki</footer>
 </body>
 
 </html>

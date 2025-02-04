@@ -1,7 +1,8 @@
-<!DOCTYPE html>
 <?php
 include "portfolio_db.php";
+$about_me = getAboutMe();
 ?>
+<!DOCTYPE html>
 <html lang="ru">
 
 <head>
@@ -32,14 +33,14 @@ include "portfolio_db.php";
   <main class="table main">
     <div class="table-row">
       <div class="table-cell">
-        <img id="me" src="<?php echo $photoSrc; ?>" alt="Моя фотография">
+        <img id="me" src="<?php echo $about_me[0]['photo']['src']; ?>" alt="Моя фотография">
       </div>
       <div class="table-cell">
         <h1>Быков Д.И.</h1>
         <pre>
-> <?php echo $about_me["age"] ?> лет
+> <?php echo $about_me[0]['age'] ?> лет
 
-  > <?php echo $about_me["course_year"] ?>-курсник ДонАУиГС
+  > <?php echo $about_me[0]['course_year'] ?>-курсник ДонАУиГС
 
     > Живу в Донецке
 
@@ -54,7 +55,7 @@ include "portfolio_db.php";
       </div>
     </div>
   </main>
-  <footer>© <?php echo $year ?> Moratakki</footer>
+  <footer>© <?php echo date("Y") ?> Moratakki</footer>
 </body>
 
 </html>

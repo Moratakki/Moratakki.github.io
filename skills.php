@@ -1,7 +1,4 @@
 <!DOCTYPE html>
-<?php
-include "portfolio_db.php";
-?>
 <html lang="ru">
 
 <head>
@@ -44,7 +41,7 @@ include "portfolio_db.php";
       </div>
     </div>
   </main>
-  <footer>© <?php echo $year ?> Moratakki</footer>
+  <footer>© <?php echo date("Y") ?> Moratakki</footer>
 </body>
 
 </html>

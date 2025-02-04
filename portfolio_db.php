@@ -1,52 +1,93 @@
 <?php
-$year = date("Y");
+$link = false;
 
-// Подключение к базе данных
-$conn = new mysqli("localhost", "root", "", "portfolio");
-
-// Проверка соединения
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+function openDB()
+{
+    global $link;
+    $link = mysqli_connect("localhost", "root", "", "portfolio");
+    mysqli_query($link, "SET NAMES UTF8");
 }
 
-// Получение контактов
-$contacts = [];
-$result = $conn->query("SELECT * FROM contacts");
-if ($result->num_rows > 0) {
-    $contacts = $result->fetch_assoc();
+function closeDB()
+{
+    global $link;
+    $link = false;
 }
 
-// Получение навыков
-$skills = [];
-$result = $conn->query("SELECT * FROM skills");
-if ($result->num_rows > 0) {
-    while ($row = $result->fetch_assoc()) {
-        $skills[] = $row;
+function getContacts()
+{
+    global $link;
+    openDB();
+    $result = mysqli_query($link, "SELECT * FROM contacts");
+
+    closeDB();
+    return mysqli_fetch_all($result, MYSQLI_ASSOC);
+}
+
+
+function getSkills()
+{
+    global $link;
+    openDB();
+    $result = mysqli_query($link, "SELECT * FROM skills");
+
+    closeDB();
+    return mysqli_fetch_all($result, MYSQLI_ASSOC);
+}
+
+
+
+function getAboutMe()
+{
+    global $link;
+    openDB();
+    $result = mysqli_query($link, "SELECT * FROM about_me");
+    $finfo = finfo_open(FILEINFO_MIME_TYPE); // Инициализация функции для определения MIME-типа
+    $about_me = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
+    // Определяем MIME-тип изображения
+    $imageType = finfo_buffer($finfo, $about_me[0]['photo'], FILEINFO_MIME_TYPE);
+
+    // Преобразуем BLOB в Base64 и сохраняем в массив
+    $imageBase64 = base64_encode($about_me[0]['photo']);
+    $about_me[0]['photo'] = [
+        'id' => $about_me[0]['id'],
+        'src' => 'data:' . $imageType . ';base64,' . $imageBase64, // Формируем строку для src
+        'type' => $imageType // Сохраняем тип изображения (опционально)
+    ];
+    closeDB();
+    return $about_me;
+}
+
+
+/*function getImages()
+{
+    global $link;
+    openDB();
+
+    $result = mysqli_query($link, "SELECT * FROM images");
+    if ($result->num_rows > 0) {
+        $finfo = finfo_open(FILEINFO_MIME_TYPE); // Инициализация функции для определения MIME-типа
+
+        while ($row = $result->fetch_assoc()) {
+            // Определяем MIME-тип изображения
+            $imageType = finfo_buffer($finfo, $row['image'], FILEINFO_MIME_TYPE);
+
+            // Преобразуем BLOB в Base64 и сохраняем в массив
+            $imageBase64 = base64_encode($row['image']);
+            $images[] = [
+                'id' => $row['id'],
+                'src' => 'data:' . $imageType . ';base64,' . $imageBase64, // Формируем строку для src
+                'type' => $imageType // Сохраняем тип изображения (опционально)
+            ];
+        }
+
+        finfo_close($finfo); // Закрываем ресурс
+    } else {
+        $images = []; // Если фотографий нет
     }
-}
 
-// Получение текстов
-$about_me = [];
-$result = $conn->query("SELECT * FROM about_me");
-if ($result->num_rows > 0) {
-    $about_me = $result->fetch_assoc();
-}
-// Запрос для получения данных, включая фото
-$sql = "SELECT photo FROM about_me";
-$result = $conn->query($sql);
-
-if ($result->num_rows > 0) {
-    $row = $result->fetch_assoc();
-    $photo = $row['photo']; // BLOB-данные
-} else {
-    $photo = null; // Если фото нет
-}
-if ($photo) {
-    $photoBase64 = base64_encode($photo); // Преобразуем BLOB в Base64
-    $photoSrc = 'data:image/jpeg;base64,' . $photoBase64; // Формируем строку для src
-} else {
-    $photoSrc = 'images/me.jpg'; // Если фото нет, используем изображение по умолчанию
-}
-
-$conn->close();
+    closeDB();
+    return $images;
+}*/
 ?>
